@@ -1,0 +1,10 @@
+{
+  "originalBytes": 11915004,
+  "initialUiBytes": 256008,
+  "glyphCoverage": 29571,
+  "files": {
+    "ui": 256008,
+    "common": 2643052,
+    "rare": 11915004
+  }
+}

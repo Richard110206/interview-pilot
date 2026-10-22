@@ -1,0 +1,54 @@
+# Keep this project name: it prefixes the docker volumes, changing it would
+# orphan existing local data volumes.
+name: lqx-ai-meeting
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in the local env file}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-yingda}
+    ports:
+      - "127.0.0.1:13306:3306"
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Schema first, then seed data (docker-entrypoint-initdb.d runs alphabetically).
+      - ../backend/admin/src/main/resources/sql/table.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ../backend/admin/src/main/resources/sql/knowledge_document.sql:/docker-entrypoint-initdb.d/02-knowledge-schema.sql:ro
+      - ../backend/admin/src/main/resources/sql/question_bank.sql:/docker-entrypoint-initdb.d/03-question-bank.sql:ro
+      - ../backend/admin/src/main/resources/sql/t_user.sql:/docker-entrypoint-initdb.d/04-user.sql:ro
+      - ../backend/admin/src/main/resources/sql/admin_permission.sql:/docker-entrypoint-initdb.d/05-admin-permission.sql:ro
+      - ../backend/admin/src/main/resources/sql/ai_properties.sql:/docker-entrypoint-initdb.d/06-ai-properties.sql:ro
+      - ../backend/admin/src/main/resources/sql/agent_properties.sql:/docker-entrypoint-initdb.d/07-agent-properties.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  mongo:
+    image: mongo:7.0
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  redis:
+    # redis-stack-server ships RediSearch for vector search (question bank / knowledge RAG)
+    image: redis/redis-stack-server:7.2.0-v10
+    ports:
+      - "127.0.0.1:16379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+volumes:
+  mysql-data:
+  mongo-data:
+  redis-data:

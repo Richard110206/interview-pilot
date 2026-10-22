@@ -1,0 +1,430 @@
+@font-face {
+  font-family: "Interview Sans";
+  src: url("/fonts/interview-sans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Interview Serif";
+  src: url("/fonts/yingda-display.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 100% 99%;
+    --foreground: 222 35% 23%;
+
+    --app-ground: 225 55% 96%;
+    --app-sheet: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 35% 23%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 35% 23%;
+    --primary: 234 51% 54%;
+    --primary-foreground: 225 100% 99%;
+    --secondary: 228 64% 95%;
+    --secondary-foreground: 222 35% 23%;
+    --muted: 228 64% 95%;
+    --muted-foreground: 221 18% 42%;
+    --accent: 228 64% 95%;
+    --accent-foreground: 222 35% 23%;
+    --data: 234 51% 54%;
+    --data-foreground: 0 0% 100%;
+    --data-soft: 230 70% 96%;
+    --data-ink: 234 48% 35%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 226 35% 89%;
+    --input: 226 30% 81%;
+    --ring: 234 51% 54%;
+    --radius: 0.5rem;
+    --chart-1: 234 51% 54%;
+    --chart-2: 207 48% 55%;
+    --chart-3: 258 37% 67%;
+    --chart-4: 0 62% 42%;
+    --chart-5: 180 28% 48%;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 40 20% 95%;
+    --app-ground: 0 0% 0%;
+    --app-sheet: 0 0% 7%;
+    --card: 0 0% 9%;
+    --card-foreground: 40 20% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 40 20% 95%;
+    --primary-foreground: 234 51% 54%;
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 71%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 40 20% 95%;
+    --data: 174 55% 55%;
+    --data-foreground: 0 0% 7%;
+    --data-soft: 174 30% 14%;
+    --data-ink: 174 60% 70%;
+    --destructive: 0 55% 60%;
+    --destructive-foreground: 0 0% 7%;
+    --border: 0 0% 17%;
+    --input: 0 0% 28%;
+    --ring: 174 55% 55%;
+  }
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    color-scheme: light;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "Interview Sans", "Noto Sans SC", "PingFang SC", "DengXian", sans-serif;
+    overflow-y: auto;
+    font-size: 15px;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    hyphens: none;
+  }
+  ::selection {
+    background: hsl(var(--data));
+    color: hsl(var(--data-foreground));
+  }
+}
+
+/* Numbers that line up: tables, KPIs, anything that counts. */
+.num,
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Page title / section rhythm shared by app screens. */
+.app-title {
+  @apply text-2xl font-semibold tracking-tight;
+}
+.app-subtitle {
+  @apply text-sm text-muted-foreground;
+}
+.section-label {
+  @apply text-xs font-medium text-muted-foreground;
+}
+
+.page-transition {
+  animation: page-fade 180ms ease;
+}
+
+.hero-slide-in {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-slide-in 640ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.hero-delay-1 {
+  animation-delay: 60ms;
+}
+
+.hero-delay-2 {
+  animation-delay: 180ms;
+}
+
+.hero-delay-3 {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+  .hero-slide-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sketchpad-mic-active {
+  animation: sketchpad-mic-pulse 1.4s ease-in-out infinite;
+}
+
+.sketchpad-recording-icon {
+  animation: sketchpad-recording-icon 1s ease-in-out infinite;
+}
+
+.sketchpad-status-dot-pulse {
+  animation: sketchpad-status-dot-pulse 1.2s ease-out infinite;
+}
+
+.sketchpad-recording-ping {
+  animation: sketchpad-recording-ping 1.4s ease-out infinite;
+}
+
+.sketchpad-transcription-live {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.sketchpad-transcription-live::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 0.5rem;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 10%,
+    rgba(220, 90, 90, 0.08) 42%,
+    transparent 72%
+  );
+  background-size: 180% 100%;
+  animation: sketchpad-transcription-shimmer 1.8s linear infinite;
+}
+
+.sketchpad-transcription-updated textarea {
+  animation: sketchpad-transcription-reveal 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sketchpad-mic-active,
+  .sketchpad-recording-icon,
+  .sketchpad-status-dot-pulse,
+  .sketchpad-recording-ping,
+  .sketchpad-transcription-live::after,
+  .sketchpad-transcription-updated textarea {
+    animation: none !important;
+  }
+}
+
+@keyframes sketchpad-mic-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes sketchpad-recording-icon {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.85);
+  }
+}
+
+@keyframes sketchpad-status-dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(200, 60, 60, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(200, 60, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 60, 60, 0);
+  }
+}
+
+@keyframes sketchpad-recording-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes sketchpad-transcription-shimmer {
+  from {
+    background-position: 140% 0;
+  }
+  to {
+    background-position: -40% 0;
+  }
+}
+
+@keyframes sketchpad-transcription-reveal {
+  from {
+    opacity: 0.82;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Shared application surfaces and navigation. */
+.app-title {
+  font-size: 28px;
+  letter-spacing: -0.8px;
+  color: hsl(var(--foreground));
+}
+.app-subtitle {
+  line-height: 1.8;
+}
+.app-sidebar {
+  border-right: 1px solid hsl(var(--border));
+}
+.app-sidebar nav[aria-label="主导航"] a {
+  height: 44px;
+  border-radius: 10px;
+  padding-left: 12px;
+  margin: 4px 0;
+}
+.app-sidebar nav[aria-label="主导航"] a[aria-current="page"] {
+  background: hsl(var(--primary));
+  color: white;
+  box-shadow: 0 4px 12px #4d5ac71a;
+}
+.app-sidebar nav[aria-label="主导航"] a[aria-current="page"] svg {
+  color: white;
+}
+.app-sidebar nav[aria-label="主导航"] {
+  margin-top: 8px;
+}
+.page-heading {
+  padding: 22px 25px;
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  border-radius: 16px;
+}
+.practice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 14px;
+  background: hsl(var(--secondary));
+}
+.practice-banner h2 {
+  font-weight: 600;
+  font-size: 17px;
+}
+.practice-banner p {
+  margin-top: 7px;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  line-height: 1.8;
+}
+.practice-banner a {
+  flex-shrink: 0;
+}
+@media (max-width: 767px) {
+  .practice-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .page-heading {
+    padding: 20px;
+  }
+  .app-title {
+    font-size: 24px;
+  }
+}
+
+.knowledge-visual-strip {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #edf0fc;
+  align-items: center;
+}
+.knowledge-visual-strip img {
+  width: 230px;
+  height: 135px;
+  object-fit: cover;
+}
+.knowledge-visual-strip > div {
+  padding: 20px 26px;
+}
+.knowledge-visual-strip h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.knowledge-visual-strip p {
+  margin-top: 9px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: hsl(var(--muted-foreground));
+}
+.question-library-art {
+  width: 155px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+@media (max-width: 767px) {
+  .knowledge-visual-strip {
+    grid-template-columns: 100px 1fr;
+  }
+  .knowledge-visual-strip img {
+    width: 100px;
+    height: 160px;
+  }
+  .knowledge-visual-strip > div {
+    padding: 16px;
+  }
+  .knowledge-visual-strip h2 {
+    font-size: 16px;
+  }
+  .question-library-art {
+    display: none;
+  }
+}
+
+/* Shared typography covers generated answers and imported question text. */
+html { font-family:"Interview Sans","Noto Sans SC",sans-serif; }
+button,input,textarea,select { font-family:inherit; }
+::placeholder { color:#7c8aa3; opacity:1; }
+[class*="prose"] { --tw-prose-body:hsl(var(--foreground)); --tw-prose-headings:hsl(var(--foreground)); --tw-prose-links:hsl(var(--primary)); --tw-prose-bold:hsl(var(--foreground)); }

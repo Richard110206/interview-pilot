@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-10-21T14:35:15.537Z",
+  "sessionId": "session_2832cc8ebf8cf6aba00ed31d52f2853d",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "pages/interview/interview-room.css",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 4,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}

@@ -1,0 +1,381 @@
+/* Yingda surfaces: readable content, translucent edges, consistent interaction. */
+:root {
+  --surface-line: #dfe4f5;
+  --surface-shadow: 0 8px 28px #34479308, 0 1px 3px #34479304;
+  --control-shadow: 0 3px 8px #3447930d, inset 0 1px 0 #ffffffc0;
+}
+.source-code-snapshot {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid #dfe4f5;
+  border-radius: 12px;
+  background: #f5f7fd;
+  padding: 16px;
+  color: #243653;
+  font-size: 12px;
+  line-height: 1.8;
+  tab-size: 4;
+}
+.source-code-snapshot code > span > span {
+  display: inline-block;
+  min-width: 3.5em;
+  margin-right: 1em;
+  color: #6c7895;
+  user-select: none;
+  text-align: right;
+}
+.app-main {
+  background:
+    radial-gradient(ellipse at 95% 0, #edf0ff80, transparent 50%), #fafbff;
+}
+.app-sidebar {
+  background: linear-gradient(155deg, #f0f2ffed, #f4f6fbe8);
+}
+.ui-button {
+  cursor: pointer;
+  touch-action: manipulation;
+  border-radius: 10px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 120ms ease;
+}
+.ui-button-primary {
+  background-image: linear-gradient(170deg, #ffffff0e, #333d950c);
+  box-shadow:
+    0 4px 10px #515dc821,
+    inset 0 1px 0 #ffffff35;
+}
+.ui-button-outline {
+  background-color: #ffffffb8;
+  border-color: #cdd5ef;
+  box-shadow: var(--control-shadow);
+}
+.ui-button:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: inset 0 2px 4px #273b8c16;
+}
+.ui-button:disabled,
+.ui-button[aria-disabled="true"] {
+  cursor: default;
+  box-shadow: none;
+}
+:where(
+    .studio-home,
+    .learning-item-list,
+    .question-workbench,
+    .app-sidebar,
+    .interview-workspace
+  )
+  button:not(:disabled) {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+:where(
+    .studio-home,
+    .learning-item-list,
+    .question-workbench,
+    .app-sidebar,
+    .interview-workspace
+  )
+  button:focus-visible {
+  outline: 2px solid #626acb;
+  outline-offset: 4px;
+}
+.studio-home button,
+.learning-item-list > button,
+.question-workbench nav button,
+.workspace-nav-item {
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    transform 120ms ease;
+}
+.studio-home button:active:not(:disabled),
+.question-workbench nav button:active,
+.learning-item-list > button:active,
+.app-sidebar .workspace-nav-item:active {
+  transform: translateY(1px) scale(0.985);
+}
+:where(.library-page, .report-page) input,
+:where(.library-page, .report-page) textarea,
+:where(.library-page, .report-page) select {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+:where(.library-page, .report-page) input:focus-visible,
+:where(.library-page, .report-page) textarea:focus-visible {
+  box-shadow: 0 0 0 4px #6974ce12;
+}
+.learning-comparison,
+.report-sources-panel,
+.practice-workspace,
+.account-form-panel,
+.report-summary-grid > div > .rounded-lg,
+.report-summary-grid > div > .rounded-xl,
+.report-next-actions,
+.intro-steps-card {
+  border-color: var(--surface-line);
+  background: linear-gradient(150deg, #ffffffed, #fbfcfff2);
+  box-shadow: var(--surface-shadow);
+}
+.library-search,
+.knowledge-search-panel {
+  border: 1px solid #dfe4f5;
+  background: linear-gradient(145deg, #edf0ffed, #f6f8ffe8);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    var(--surface-shadow);
+}
+@supports (backdrop-filter: blur(12px)) {
+  .library-search {
+    backdrop-filter: blur(12px);
+  }
+}
+.intro-workbench {
+  align-items: stretch;
+  gap: 24px;
+}
+.intro-welcome {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e5f6;
+  background: linear-gradient(145deg, #eff1ffef, #f6f8ffe8);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    var(--surface-shadow);
+}
+.intro-welcome::before {
+  opacity: 0.08;
+}
+.intro-preparation {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: auto;
+}
+.intro-preparation > div {
+  flex: 1;
+  min-width: 0;
+}
+.study-artwork {
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.intro-preparation .study-artwork {
+  width: 37%;
+  max-width: 215px;
+  height: auto;
+  align-self: center;
+}
+.intro-steps-card {
+  display: flex;
+  flex-direction: column;
+}
+.intro-steps-card > div + div {
+  flex: 1;
+  background: #f1f4fc85;
+}
+.learning-workbench {
+  align-items: stretch;
+}
+.learning-item-rail {
+  position: relative;
+  min-height: 360px;
+  min-width: 0;
+}
+.learning-item-rail > .learning-item-list {
+  position: absolute;
+  inset: 0;
+  max-height: none;
+  border: 1px solid #e0e5f5;
+  background: linear-gradient(145deg, #edf0ffe6, #f2f5fce8);
+  scrollbar-gutter: stable;
+}
+.learning-item-list > button[aria-current="true"] {
+  box-shadow: var(--control-shadow);
+}
+.learning-workbench > .min-w-0 {
+  display: flex;
+  flex-direction: column;
+}
+.learning-workbench .practice-workspace {
+  flex: 1;
+  min-height: 360px;
+}
+.practice-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 38px 24px;
+}
+.practice-welcome .study-artwork {
+  width: 220px;
+  height: 147px;
+  margin-bottom: 22px;
+}
+.report-summary-grid {
+  align-items: stretch;
+}
+.report-summary-grid > div {
+  min-width: 0;
+  display: flex;
+}
+.report-summary-grid > div > div {
+  width: 100%;
+}
+.report-action-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.report-action-list > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.report-grading-policy {
+  border: 1px solid #e0e5f5;
+  background: #edf1fca8;
+}
+.knowledge-document-grid > div {
+  border-color: var(--surface-line);
+  background: #ffffffed;
+  box-shadow: 0 2px 6px #34479304;
+}
+.studio-home .rehearsal-sheet {
+  background: #fffffff2;
+  box-shadow:
+    0 18px 50px #4a5c9b0d,
+    inset 0 1px 0 #fff;
+}
+.studio-home .studio-primary {
+  box-shadow:
+    0 5px 12px #515dc824,
+    inset 0 1px 0 #ffffff35;
+}
+.studio-home .studio-secondary {
+  background: #ffffffa8;
+  box-shadow: var(--control-shadow);
+}
+.studio-home .practice-route {
+  gap: 16px;
+}
+.studio-home .practice-route > button {
+  height: 100%;
+  border: 1px solid #ffffffc9;
+  border-radius: 14px;
+  padding: 20px;
+  background: #ffffff85;
+  box-shadow: var(--control-shadow);
+}
+.studio-home .studio-closing {
+  position: relative;
+  min-height: 190px;
+}
+.studio-closing > .study-artwork {
+  width: 185px;
+  height: 123px;
+}
+.studio-closing > div {
+  margin-right: auto;
+}
+.interview-workspace .room-conversation {
+  box-shadow: var(--surface-shadow);
+}
+.interview-workspace .room-preparation {
+  border: 1px solid var(--surface-line);
+  background: #f8faffcc;
+  border-radius: 18px;
+  padding: 18px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ui-button-outline:hover,
+  .studio-home .studio-secondary:hover {
+    background: #fff;
+    border-color: #aab6df;
+    box-shadow:
+      0 5px 12px #34479312,
+      inset 0 1px 0 #fff;
+  }
+  .ui-button-primary:hover,
+  .studio-home .studio-primary:hover {
+    box-shadow:
+      0 6px 16px #515dc831,
+      inset 0 1px 0 #ffffff35;
+  }
+  .studio-home .practice-route > button:hover {
+    background: #ffffffd6;
+    border-color: #c9d2f2;
+    box-shadow: 0 7px 18px #3447930c;
+  }
+}
+@media (max-width: 1100px) {
+  .intro-preparation .study-artwork {
+    width: 32%;
+  }
+}
+@media (max-width: 900px) {
+  .learning-item-rail {
+    min-height: 0;
+  }
+  .learning-item-rail > .learning-item-list {
+    position: relative;
+    max-height: 180px;
+  }
+}
+@media (max-width: 767px) {
+  .intro-preparation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .intro-preparation .study-artwork {
+    width: 145px;
+    align-self: flex-end;
+    margin-top: -6px;
+  }
+  .intro-welcome {
+    padding: 24px;
+  }
+  .studio-home .studio-closing {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .studio-closing > .study-artwork {
+    width: 115px;
+    height: 77px;
+  }
+  .studio-closing > div {
+    flex: 1;
+    min-width: 150px;
+  }
+}
+@media (pointer: coarse) {
+  .ui-button {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-button,
+  .studio-home button,
+  .learning-item-list > button,
+  .question-workbench nav button,
+  .workspace-nav-item {
+    transition: none;
+  }
+  .ui-button:active:not(:disabled):not([aria-disabled="true"]),
+  .studio-home button:active,
+  .learning-item-list > button:active,
+  .question-workbench nav button:active,
+  .app-sidebar .workspace-nav-item:active {
+    transform: none;
+  }
+}

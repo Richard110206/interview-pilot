@@ -1,0 +1,23 @@
+# ---- secrets & local config (never commit) ----
+.local/
+*.env
+*.env.local
+runtime.env
+
+# ---- build artifacts ----
+node_modules/
+dist/
+target/
+*.log
+*.pid
+
+# ---- demo video workspace (large local render files) ----
+demo-video/
+
+# ---- OS / IDE ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+.mimosa/
