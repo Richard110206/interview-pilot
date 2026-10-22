@@ -2,7 +2,7 @@
 
 映答（Yingda）前端 —— React 19 · TypeScript · Vite 7 · Tailwind CSS · shadcn/ui。
 
-本目录属于 [yingda-ai-interview](../README.md) 单体仓库的一部分，请从仓库根目录的 [快速开始](../README.md#-快速开始复现指南) 启动。
+本目录属于 [interview-pilot](../README.md) 单体仓库的一部分，请从仓库根目录的 [快速开始](../README.md#-快速开始复现指南) 启动。
 
 ```bash
 npm install

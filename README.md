@@ -115,8 +115,8 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/Richard110206/yingda-ai-interview.git
-cd yingda-ai-interview
+git clone https://github.com/Richard110206/interview-pilot.git
+cd interview-pilot
 
 # 2. 准备环境变量（模板已给出全部变量与说明）
 mkdir -p .local
@@ -202,7 +202,7 @@ cd frontend && npm install && npm run dev
 ## 📁 项目结构
 
 ```
-yingda-ai-interview/
+interview-pilot/
 ├── backend/          # Spring Boot 后端（Maven 多模块：admin 主应用）
 ├── frontend/         # React 19 + Vite 前端
 ├── deploy/           # Docker Compose 与 runtime.env 模板
